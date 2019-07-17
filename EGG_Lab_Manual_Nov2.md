@@ -213,7 +213,7 @@ consonant).
 
 #### Sample Workflow
 
-[Sample Workflow](https://github.com/nvh4/UCSC-EGG-lab/blob/master/EGG_workflow_glottalized_C.md) provides step-by-step instructions for processing and analyzing data using scripts developed by Ryan.
+This [sample workflow](https://github.com/nvh4/UCSC-EGG-lab/blob/master/EGG_workflow_glottalized_C.md) provides step-by-step instructions for processing and analyzing data using scripts developed by Ryan.
 
 #### praatdet
 
