@@ -15,7 +15,8 @@
 2. Connect the EGG to your laptop
   * Check that your computer recognizes the EGG
     * Mac: System Preferences -> Sound -> Input
-    * Windows: **update this**
+    * Windows 10: Control Panel -> Hardware and Sound -> Sound -> Recording Tab / Devices
+      * Properties: make sure it's set to record at 100%
   
 3. Connect the microphone
   * XLR port on the back panel
@@ -23,6 +24,8 @@
     * We should see we like audio recorded through the machine,
     since this does not require the additional step of syncing, which adds the possibility of
     extra complications (especially for experiments, but maybe not as bad for fieldwork?)
+  * Based on Ryan's Summer 2019 fieldwork in Guatemala, recording EGG signal and audio simultaneously from the machine introduces artifacts in the recordings
+  * Conclusion: record audio separately and synchronize later; may need to check with Glottal Enterprises to see if they have an idea why this is happening and if it can be fixed
 
 4. Position the electrodes
   * Plug the electrodes into the electrodes jack on the front panel
@@ -44,7 +47,7 @@
 6. Experiment with the output levels (optional)
   * Switches on front panel
   * Marc Garellek recommends EGG Output on Low, Audio Output on High
-  * For women, EGG Output should be set to high in order to get amplitude in the same neighborhood as with men
+  * For women, EGG Output should be set to High in order to get amplitude in the same neighborhood as with men
 
 You are now ready to record!
 
@@ -53,8 +56,17 @@ You are now ready to record!
 
 2. Clean off the electrodes with water
 
-3. Wipe off the electrodes with disinfectant between subjects
-  * **Do we have something for this?** 
+3. Wipe off the electrodes with alcohol wipe pads between subjects
+
+## Quirks of our Machine
+
+* Signal is inverted (reversed polarity)
+* 10 Hz lowpass filter
+  * Cannot be changed
+  * Prevents us from seeing extended glottal contact (e.g. glottal stop) in the EGG signal
+* Output louder on front panel than back panel
+* Introduces artifacts when recording audio and EGG simultaneously through machine
+  * Related to use of back panel? **investigate this**
 
 ## Analysis
 
@@ -196,6 +208,10 @@ consonant).
 
 ## Data Processing
 
+#### Sample Workflow
+
+[Sample Workflow](https://github.com/nvh4/UCSC-EGG-lab/blob/master/EGG_workflow_glottalized_C.md) provides step-by-step instructions for processing and analyzing data using scripts developed by Ryan.
+
 #### praatdet
 
 [Praatdet](https://github.com/kirbyj/praatdet) is a set of Praat scripts created by James Kirby
@@ -233,14 +249,18 @@ is also unclear how often the software is updated. For this reason, I would avoi
 using Praat scripts that we can adjust as needed.
 
 ## To-do
-  * Certain things highlighted above
   * Analysis
+    * As we continue to develop scripts, we can probably trim some of the discussion of other resources and incorporate more of our stuff (and how to plug Kirby's scripts into our workflow)
     * Time normalization in R
-    * Script to automate analysis of oral-laryngeal timing (a la @dicanio2012).
-  * Decide whether we are happy with the audio signal from the EGG
-    * Or record separately, and figure out syncing
+  * Figure out best way of recording audio
+    * How to sync when recording separately
     * Preferred output gain
-  * Update manual with insights from our pilot study
+  * Does artifact issue relate to the use of front panel vs. back panel?
+    * Artifact so far seen only in recordings from Guatemala, when back panel was used
+  * Contact Glottal Enterprises people
+    * Fix polarity reversal?
+    * Get rid of built-in high pass filter?
+
 
 ## References
 DiCanio, Christian T. 2009. “The Phonetics of Register in Takhian Thong Chong.” *Journal of the International Phonetic Association* 39 (2). Cambridge University Press: 162–88.
