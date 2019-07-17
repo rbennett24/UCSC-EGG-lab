@@ -66,7 +66,7 @@ You are now ready to record!
   * Prevents us from seeing extended glottal contact (e.g. glottal stop) in the EGG signal
 * Output louder on front panel than back panel
 * Introduces artifacts when recording audio and EGG simultaneously through machine
-  * Related to use of back panel? **investigate this**
+  * Related to use of back panel? **INVESTIGATE THIS**
 
 ## Analysis
 
@@ -100,8 +100,8 @@ opening is based on a threshold. The typical threshold for the hybrid method is 
 CQ is extremely useful in the investigation of phonation types, since it provides an index of the degree
 of glottal constriction. Tense / creaky / laryngealized registers tend to have higher CQs, while breathy
 phonation has a relatively smaller CQ. Modal voice is less consistent, and may involve either high or low
-OQ (DiCanio 2009). OQ is better correlated with H1-H2, a measure of glottal tension, than with H1-A3, a
-measure of breathiness; as such, DiCanio (2009) suggests that EGG is potentially limited for languages
+OQ (DiCanio 2008). OQ is better correlated with H1-H2, a measure of glottal tension, than with H1-A3, a
+measure of breathiness; as such, DiCanio (2008) suggests that EGG is potentially limited for languages
 with multiple phonation types, whose differences could go beyond what EGG shows. However, Keating et al. (2011) found that CQ reliably distinguishes phonation in several languages.
 
 CQ may also be useful for investigating strengthening and hyperarticulation. Li and Zhang (2014) found that the CQ
@@ -109,7 +109,10 @@ of vowels following a segment in domain-initial position was negatively correlat
 however, the data are somewhat equivocal and this was not consistent across all of the segments tested,
 so more research is needed before I would recommend using CQ for this purpose.
 
-**figure out how to include images in markdown; would be useful here to compare EGG and DEGG**
+Examples of EGG (top) and DEGG signals (bottom) from DiCanio 2008:
+
+![example signals](https://github.com/nvh4/UCSC-EGG-lab/blob/master/dicanio_2008_example.png)
+
 
 #### Speed Quotient (SQ)
 
@@ -263,7 +266,7 @@ using Praat scripts that we can adjust as needed.
 
 
 ## References
-DiCanio, Christian T. 2009. “The Phonetics of Register in Takhian Thong Chong.” *Journal of the International Phonetic Association* 39 (2). Cambridge University Press: 162–88.
+DiCanio, Christian T. 2008. “The Phonetics of Register in Takhian Thong Chong.” *Journal of the International Phonetic Association* 39 (2). Cambridge University Press: 162–88.
 
 DiCanio, Christian T. 2012. “The Phonetics of Fortis and Lenis Consonants in Itunyoso Trique.” *International Journal of American Linguistics* 78 (2). University of Chicago Press Chicago, IL: 239–72.
 
