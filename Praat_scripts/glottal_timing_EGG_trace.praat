@@ -26,7 +26,7 @@ form Glottal timing
 	comment What character do glottalized stops end with?
 		text glotCode '
 	comment How many samples should be taken for time-normalized EGG traces?
-		integer sampCount 500
+		integer sampCount 800
 	comment Datestamp output files? (Existing .txt files with same name will be deleted!)
 		boolean datestamp 0
 endform
@@ -162,7 +162,7 @@ for k from 1 to numfile
 			endif
 			
 			# Get time of Lx maximum during interval.
-			# This assumes that there is a unique "max" point.
+			# This assumes that there is a unique "max" point per segment.
 			select segTG
 			Get points: eggTier, "is equal to", "max"
 			maxPts = selected ("PointProcess")
@@ -202,7 +202,7 @@ for k from 1 to numfile
 				# Get time-normalized measures of release and closure midpoint for VCV
 				if segContext$ = "VCV"
 					relTimeNorm$ = string$((relTime-start)/(end-start))
-					closMidTimeNorm$ = string$( ((relTime-start)/2)/(end-start) )
+					closMidTimeNorm$ = string$( ( ((relTime-start)/2) - start)/(end-start) )
 				else
 					relTimeNorm$ = "NA"
 					closMidTimeNorm$ = "NA"
