@@ -12,8 +12,8 @@ author: "Nick Van Handel"
 
 1. Turn the EGG on, and check that the batteries are charged
   * You can check each of the batteries by flipping the power switch to the left and the right
-  * Both lights are green: 2-hour charge
-  * Either light is red: 6-hour charge
+  * Both lights are green: 2-hour charge required
+  * Either light is red: 6-hour charge required
   * The EGG MUST be turned off while charging
     * This prevents interference with the EGG signal
 
@@ -31,15 +31,15 @@ author: "Nick Van Handel"
 
 4. Position the electrodes
   * Plug the electrodes into the electrodes jack on the front panel
-  * Cover the electrodes with a tiny layer of electrode gel (optional, but helps if the signal is weak)
+  * (Optional) Cover the electrodes with a tiny layer of electrode gel (supposed to help if the signal is weak; unclear if this does much)
     * The gel should not touch the insulating strip between the electrodes
   * Attach the electrodes to the velcro strap
     * The insulating strip should be horizontal (parallel with the strap)
     * The electrode with red wires should be on the left
   * Place the electrodes just below the Adam's apple; the electrodes should be facing one another to the extent possible
-  * Have the subject hold /a/, and adjust the height of the electrodes until the "Electrode Placement/Laryngeal Movement" indicator
-  on the front panel is centered on the green LEDs and relatively stable
+  * Have the subject hold /a/ and talk for a bit, and adjust the height of the electrodes until the "Electrode Placement/Laryngeal Movement" indicator on the front panel is centered on the green LEDs and relatively stable
     * **This is extremely important - the signal is noisy if the electrodes are too low or too high**
+    * Determining the position not as straightforward as it seems, e.g. the electrodes tend to jump around during running speech
   * Secure the collar; it should be tight enough that the electrodes are always in contact with the skin
  
 5. Open the recording software (Praat, Audacity)
@@ -49,7 +49,7 @@ author: "Nick Van Handel"
 6. Experiment with the output levels (optional)
   * Switches on front panel
   * Marc Garellek recommends EGG Output on Low, Audio Output on High
-    * **Another thing we should play around with**
+  * For women, EGG Output should be set to high in order to get amplitude in the same neighborhood as with men
 
 You are now ready to record!
 
