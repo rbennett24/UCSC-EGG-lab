@@ -1,9 +1,4 @@
----
-title: "EGG Lab Manual"
-date: "Nov 2018"
-author: "Nick Van Handel"
-
----
+# EGG Lab Manual
 
 ## Setting up a recording session
 
