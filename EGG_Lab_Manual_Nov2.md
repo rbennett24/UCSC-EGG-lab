@@ -116,10 +116,10 @@ Examples of EGG (top) and DEGG signals (bottom) from DiCanio 2008:
 
 #### Speed Quotient (SQ)
 
-Speed Quotient (SQ) is the ratio of closure duration and opening duration (Kuang and Keating 2012 and references therein).
+Speed Quotient (SQ) is the ratio of closing duration and opening duration (Kuang and Keating 2012 and references therein).
 This measure is a way of describing the symmetry of the glottal pulse, which may relate to phonation: creaky
-voice should have a lower SQ, indicating a skewed pulse due to shorter closure duration, while breathy voice should
-have an SQ closer to 1, reflecting similar closure and open durations. However, SQ is reported to not
+voice should have a lower SQ, indicating a skewed pulse due to shorter closing duration, while breathy voice should
+have an SQ closer to 1, reflecting similar closing and opening durations. However, SQ is reported to not
 vary with phonation as reliably as CQ (Kuang and Keating 2012), and impressionistically, this measure is not used
 nearly as much as the others discussed here.
 
