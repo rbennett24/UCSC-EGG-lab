@@ -18,7 +18,7 @@
 
 7. Use mark_EGG_extrema.praat to place EGG extrema on TextGrids, and mark_stop_releases.praat to add stop releases to stop intervals.
 
- * mark_EGG_extrema.praat should probably be changed so that it looks for extrema in the *derivative* of the signal instead, much like mark_stop_releases.praat does.
+ * mark_EGG_extrema.praat allows you to look for extrema in the *derivative* of the signal instead, much like mark_stop_releases.praat does.
 
 8. Hand-correct EGG extrema and releases [Undergraduates]
 
