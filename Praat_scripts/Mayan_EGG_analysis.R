@@ -27,7 +27,7 @@ font_import(prompt = F,pattern="DoulosSIL-R") # Import system fonts -- this can 
 
 
 # Load the text file of laryngeal timing measurements.
-computer <- "510fu"
+computer <- "Tiamat"
 #basedir<-paste0("C:\\Users\\",computer,"\\Dropbox\\Research\\Mayan\\Uspanteko\\Uspanteko_NSF_project\\Recordings\\")
 basedir<-paste0("C:\\Users\\",computer,"\\Desktop\\Kaq_EGG_recordings\\")
 
@@ -46,6 +46,20 @@ if (dir.exists(outdir)){
 # Need some special options to handle special characters <# '> in the input files 
 Lx.timing<-read.table("glottal_timing.txt",header=T,comment.char = "",quote="\"")
 Lx.traces<-read.table("EGG_traces.txt",header=T,comment.char = "",quote="\"")
+
+
+###########################
+# Reduce data if desired
+###########################
+
+# No glottal stop
+Lx.traces<-subset(Lx.traces,!(seg=="GS"))
+Lx.timing<-subset(Lx.timing,!(seg=="GS"))
+
+# Reduce numberof raw EGG measurement points used for plotting EGG traces down the line.
+max(Lx.traces$step)
+Lx.traces<-subset(Lx.traces,step%in%seq(0,600,2))
+
 
 
 ###########################
@@ -85,8 +99,10 @@ Lx.timing$glot.type<-revalue(Lx.timing$seg,
 # Set a base plot for time-normalized EGG traces
 Lx.trace.base<-ggplot(data=Lx.traces,
                       aes(x=stepPerc,y=Amp))+
+                      
+                      # If you like, add raw EGG traces
                       #geom_line(color="grey65",alpha=0.45)+
-                      geom_point(color="grey65",alpha=0.1)+
+                      geom_point(color="grey65",alpha=0.15)+
                       
                       theme_bw(base_size=24)+
                       
@@ -105,9 +121,18 @@ Lx.trace.loess<-Lx.trace.base+
 # Prepare some text for annotating facets
 # You are doing this in such a way that only one facet will be annotated.
 # To annotate both, use the "annotate" function instead.
-relText<-data.frame(stepPerc=median(Lx.timing$RelTimeNorm,na.rm=T)-0.1,Amp=0.9,glot.type=factor("Glottalized",levels=levels(Lx.timing$glot.type)))
+relText<-data.frame(stepPerc=median(Lx.timing$RelTimeNorm,na.rm=T)-0.1,
+                    #Amp=0.9,
+                    Amp=-0.1,
+                    glot.type=factor("Glottalized",levels=levels(Lx.timing$glot.type)))
+lxmaxText<-data.frame(stepPerc=median(Lx.timing$LxMaxTimeNorm,na.rm=T)-0.1,
+                      # Amp=0.9,
+                      Amp=-0.1,
+                      glot.type=factor("Glottalized",levels=levels(Lx.timing$glot.type)))
 
-lxmaxText<-data.frame(stepPerc=median(Lx.timing$LxMaxTimeNorm,na.rm=T)-0.1,Amp=0.9,glot.type=factor("Glottalized",levels=levels(Lx.timing$glot.type)))
+# relText<-data.frame(stepPerc=0.9,Amp=-0.1,glot.type=factor("Glottalized",levels=levels(Lx.timing$glot.type)))
+# lxmaxText<-data.frame(stepPerc=0.1,Amp=-0.1,glot.type=factor("Glottalized",levels=levels(Lx.timing$glot.type)))
+
 
 
 # Add distribution of stop releases
@@ -125,7 +150,7 @@ Lx.trace.rel<-Lx.trace.loess+
                       #         label="Releases",fontface="bold",size=5)
 
 
-# Add disitribution of Lx maxima
+# Add distribution of Lx maxima
 Lx.trace.rel.max<-Lx.trace.rel+
                     geom_density(data=Lx.timing,
                        inherit.aes = F,
@@ -166,17 +191,31 @@ head(Lx.timing.short)
 # Define a custom function for plotting number of observations in each condition.
 # http://stackoverflow.com/questions/15660829/how-to-add-a-number-of-observations-per-group-and-use-group-mean-in-ggplot2-boxp
 #
-give.n <- function(x,ypos=min(Lx.timing.short$Lag,na.rm=T)-100){
+give.n <- function(x,ypos=1000*min(Lx.timing.short$Lag,na.rm=T)-50){
   # Setting the value of y here affects the vertical positioning of the labels.
   data.frame(y = ypos, label = paste0("n=",length(x)))
 }
 
 # Rename lag types
-Lx.timing.short$Lag.type<-revalue(Lx.timing.short$Lag.type,c("MinusClosureMid" = "Closure Midpoint",
+Lx.timing.short$Lag.type<-revalue(Lx.timing.short$Lag.type,c("MinusSegStart" = "Stop onset",
+                                                             "MinusClosureMid" = "Closure Midpoint",
                                                              "MinusRel" = "Release",
-                                                              "MinusSegEnd" = "Stop offset",
-                                                              "MinusSegStart" = "Stop onset"
+                                                              "MinusSegEnd" = "Stop offset"
                                                               ))
+
+# Reorder levels to reflect actual temporal precedence in the real world.
+# http://www.cookbook-r.com/Manipulating_data/Changing_the_order_of_levels_of_a_factor/
+Lx.timing.short$Lag.type<-as.factor(Lx.timing.short$Lag.type)
+levels(Lx.timing.short$Lag.type)
+
+stopEvents<-c("Stop onset","Closure Midpoint","Release","Stop offset")
+Lx.timing.short$Lag.type<-factor(Lx.timing.short$Lag.type,levels=stopEvents)
+
+
+# If you want to exclude a particular lag type from analysis:
+# Lx.timing.short<-subset(Lx.timing.short,!(Lag.type=="Closure Midpoint"))
+
+
 
 # Start base violin + box plot
 lag.base<-ggplot(data=Lx.timing.short,
@@ -209,7 +248,10 @@ lag.base<-ggplot(data=Lx.timing.short,
   stat_summary(fun.data = give.n, geom = "text", size=7,
                col="black",fontface="bold")+
   
-  ggtitle("Lx maximum timing relative to:")
+  ggtitle("Lx maximum timing relative to:")+
+  
+  # Draw bold horizontal line
+  geom_hline(yintercept = 0,lwd=1.5)
 
 lag.base
 

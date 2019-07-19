@@ -17,6 +17,8 @@ form EGG extrema marking
 		boolean markMinima 0
 	comment Use dEGG derivative signal to mark extrema?
 		boolean dEGGtest 0
+	comment Restrict extrema to middle 80% of the consonant interval?
+		boolean trimEdges 1
 endform
 
 # Set the tier where EGG extrema will be marked.
@@ -90,6 +92,12 @@ for k from 1 to numfile
 			# Get timecodes for beginning and end of the interval.
 			start = Get starting point... 'seg_tier' 'i'
 			end = Get end point... 'seg_tier' 'i'
+			
+			if trimEdges = 1
+				duration = end - start
+				start = start + duration*0.1
+				end = end - duration*0.1
+			endif
 			
 			# Find amplitude min/max, add points.
 			select eggSignal

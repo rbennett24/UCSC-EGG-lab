@@ -26,7 +26,7 @@ form Glottal timing
 	comment What character do glottalized stops end with?
 		text glotCode '
 	comment How many samples should be taken for time-normalized EGG traces?
-		integer sampCount 800
+		integer sampCount 200
 	comment Datestamp output files? (Existing .txt files with same name will be deleted!)
 		boolean datestamp 0
 endform
@@ -182,7 +182,7 @@ for k from 1 to numfile
 			# Lx max relative to segment onset = offset of preceding vowel
 			startLag = maxTime - start
 			
-			# Lx max relative to segment offset = onset of preceding vowel, but only in VCV
+			# Lx max relative to segment offset = onset of following vowel, but only in VCV
 			if segContext$ = "VCV"		
 				endLag$ = string$(maxTime - end)
 			else
@@ -194,15 +194,19 @@ for k from 1 to numfile
 			# Verify that a release was present in the TextGrid coding
 			if relTest = 0
 				relLag$ = "NA"
+				relTimeNorm$ = "NA"
 				closureMidLag$ = "NA"
+				closMidTimeNorm$ = "NA"
 			else
 				relLag$ = string$(maxTime - relTime)
-				closureMidLag$ = string$(maxTime - (relTime-start)/2)
+				
+				closureMidTime = start+(relTime-start)/2
+				closureMidLag$ = string$(maxTime - closureMidTime)
 				
 				# Get time-normalized measures of release and closure midpoint for VCV
 				if segContext$ = "VCV"
 					relTimeNorm$ = string$((relTime-start)/(end-start))
-					closMidTimeNorm$ = string$( ( ((relTime-start)/2) - start)/(end-start) )
+					closMidTimeNorm$ = string$( (closureMidTime-start)/(end-start) )
 				else
 					relTimeNorm$ = "NA"
 					closMidTimeNorm$ = "NA"
